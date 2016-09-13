@@ -14,7 +14,7 @@ TOORNAMENT_ID = ''
 API_KEY = ''
 CLIENT_ID = ''
 CLIENT_SECRET = ''
-#this value starts out empty and is set by the authorize function
+#this value starts out empty and is set by the authenticate function
 ACCESS_TOKEN = ''
 
 #The matches parameter should be a list of objects(dictionaries) containing data about the matches.
