@@ -22,25 +22,19 @@ ACCESS_TOKEN = ''
 #This function formats an email based upon which matches are occurring today, and sends the email to all involved players.
 def sendEmails(matches):
   recipients=['']
-  msg = '********************************************************************\r\n\r\n'
-  msg += 'This email serves as a reminder regarding today\'s WLDL matches. See below for what time your team plays.\r\n\r\n'
+  msg = ''
   for match in matches:
-    msg += 'Team ' + match['team1name'] + ' vs. Team ' + match['team2name'] + ' - ' + match['time'] + '\r\n'
     recipients.extend(match['team1emails'])
     recipients.extend(match['team2emails'])
-  msg += '\r\n'
   if len(recipients) > 0:
     recipients = [x for x in recipients if x is not None]
-    msg += 'In the instance that this does not work for your team, please contact the opposing team\'s captain ASAP via Discord. Once any schedule changes have been resolved please relay those changes to a WLDL admin. A reminder, unless previously approved, your team will receive a forfeit if not in place and ready to go within 10 minutes of the start time.\r\n\r\n'
-    msg += 'GL! HF!\r\n\r\nThe WLDL Admin Team\r\n\r\n'
-    msg += '**********************************************************************\r\n\r\n'
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(SMTP_USERNAME,SMTP_PASSWORD)
     body = '\r\n'.join((
             "From: %s" % SENDER,
             "BCC: %s" % ', '.join(recipients),
-            "Subject: Todays WLDL Matches",
+            "Subject: Todays Matches",
             "",
             msg
             ))
