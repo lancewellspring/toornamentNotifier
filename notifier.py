@@ -73,11 +73,11 @@ def pullMatches():
 #Basically just parses out the data we care about, and returns a nicely formated dictionary
 def parseMatches(matches):
   matchData=[]
+  today = datetime.datetime.today()
   for match in matches:
     date = match['date']
     if date is not None:
       d=datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S-0400')
-      today = datetime.datetime.today()
       #we conly care about matches happening today
       if d.year == today.year and d.month == today.month and d.day == today.day:
         teams = match['opponents']
