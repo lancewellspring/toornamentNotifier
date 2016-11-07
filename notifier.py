@@ -77,6 +77,7 @@ def parseMatches(matches):
   for match in matches:
     date = match['date']
     if date is not None:
+      #this line assumes eastern time zone in the summer.  Ideally should be changed to work for any time zone.
       d=datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S-0400')
       #we conly care about matches happening today
       if d.year == today.year and d.month == today.month and d.day == today.day:
